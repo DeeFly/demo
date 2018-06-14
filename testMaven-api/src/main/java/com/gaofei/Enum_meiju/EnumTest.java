@@ -6,18 +6,18 @@ package com.gaofei.Enum_meiju;
 public enum  EnumTest {
     ONE("one") {
         @Override
-        void reset() {
+        public void reset() {
             System.out.println("one");
         }
     },TWO("two") {
         @Override
-        void reset() {
+        public void reset() {
             System.out.println("two");
         }
     };
     private String name;
 
-    abstract void reset();
+    public abstract void reset();
 
     public String getName() {
         return name;
