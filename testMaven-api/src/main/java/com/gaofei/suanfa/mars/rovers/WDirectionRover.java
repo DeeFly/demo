@@ -1,4 +1,6 @@
-package com.gaofei.suanfa.mars;
+package com.gaofei.suanfa.mars.rovers;
+
+import com.gaofei.suanfa.mars.exception.MarsMissionExcepton;
 
 /**
  * Created by GaoQingming on 2018/7/13 0013.

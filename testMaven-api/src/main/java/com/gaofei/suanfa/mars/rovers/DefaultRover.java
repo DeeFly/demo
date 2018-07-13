@@ -1,9 +1,9 @@
-package com.gaofei.suanfa.mars;
+package com.gaofei.suanfa.mars.rovers;
 
 /**
  * Created by GaoQingming on 2018/7/13 0013.
  */
-public abstract class DefaultRover implements Rover{
+public abstract class DefaultRover implements Rover {
     protected int x;
     protected int y;
     protected int maxX;

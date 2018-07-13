@@ -1,4 +1,4 @@
-package com.gaofei.suanfa.mars;
+package com.gaofei.suanfa.mars.rovers;
 
 /**
  * Created by GaoQingming on 2018/7/13 0013.
