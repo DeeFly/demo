@@ -121,12 +121,6 @@ public class MarsMission {
         return info.size() >= (2 * roverSeq + 1);
     }
 
-    public static void main(String[] args) {
-        MarsMission marsMission = new MarsMission();
-        List<String> info = marsMission.readInfo();
-        info.forEach(System.out::println);
-    }
-
     private List<String> readInfo() {
         List<String> result = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
