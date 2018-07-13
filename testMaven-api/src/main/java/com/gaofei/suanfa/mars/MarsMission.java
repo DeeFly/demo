@@ -1,5 +1,6 @@
 package com.gaofei.suanfa.mars;
 
+import com.gaofei.suanfa.mars.constants.Directives;
 import com.gaofei.suanfa.mars.exception.MarsMissionExcepton;
 import com.gaofei.suanfa.mars.rovers.Rover;
 import com.gaofei.suanfa.mars.rovers.RoverFactory;
@@ -41,7 +42,7 @@ public class MarsMission {
 
         char[] directives = directive.toCharArray();
         for (char command : directives) {
-            if ("M".equals(command + "")) {
+            if (Directives.MOVE.equals(command + "")) {
                 rover.move();
             } else {
                 rover = rover.switchDirection(command + "");

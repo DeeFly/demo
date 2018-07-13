@@ -1,5 +1,6 @@
 package com.gaofei.suanfa.mars.rovers;
 
+import com.gaofei.suanfa.mars.constants.Directions;
 import com.gaofei.suanfa.mars.exception.MarsMissionExcepton;
 
 /**
@@ -9,7 +10,7 @@ public class SDirectionRover extends DefaultRover {
 
     public SDirectionRover(int x, int y, int maxX, int maxY) {
         super(x,y,maxX,maxY);
-        this.direction = "S";
+        this.direction = Directions.SOUTH;
     }
 
     @Override

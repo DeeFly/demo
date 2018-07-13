@@ -1,5 +1,7 @@
 package com.gaofei.suanfa.mars.rovers;
 
+import com.gaofei.suanfa.mars.constants.Directives;
+
 /**
  * Created by GaoQingming on 2018/7/13 0013.
  */
@@ -18,9 +20,9 @@ public abstract class DefaultRover implements Rover {
     }
 
     public Rover switchDirection(String directive) {
-        if (LEFT.equals(directive)) {
+        if (Directives.LEFT.equals(directive)) {
             return leftRover();
-        } else if (RIGHT.equals(directive)) {
+        } else if (Directives.RIGHT.equals(directive)) {
             return rightRover();
         } else {
             throw new RuntimeException("您的指令有误:" + directive);
