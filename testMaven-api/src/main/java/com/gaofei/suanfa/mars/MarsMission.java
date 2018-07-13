@@ -31,12 +31,12 @@ public class MarsMission {
         while (roverSeqExists(roverSeq, info)) {
             rover = getRover(roverSeq, info);
             String directive = info.get(2 * roverSeq);
-            executMission(rover,directive);
+            executeMission(rover,directive);
             roverSeq++;
         }
     }
 
-    private void executMission(Rover rover, String directive) {
+    private void executeMission(Rover rover, String directive) {
         if (StringUtils.isBlank(directive)) {
             return;
         }
