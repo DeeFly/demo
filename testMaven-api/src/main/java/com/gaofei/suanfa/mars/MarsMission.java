@@ -1,5 +1,6 @@
 package com.gaofei.suanfa.mars;
 
+import com.gaofei.suanfa.mars.constants.Directions;
 import com.gaofei.suanfa.mars.constants.Directives;
 import com.gaofei.suanfa.mars.exception.MarsMissionExcepton;
 import com.gaofei.suanfa.mars.rovers.Rover;
@@ -53,7 +54,7 @@ public class MarsMission {
     }
 
     private void checkInput(List<String> info) {
-        if (info == null || info.size() < 4) {
+        if (info == null || info.size() < 3) {
             throw new MarsMissionExcepton("您的输入有误");
         }
     }
@@ -76,13 +77,13 @@ public class MarsMission {
 
     private Rover doGetRover(int x, int y, String direction) {
         switch (direction) {
-            case "E":
+            case Directions.EAST:
                 return RoverFactory.getEDirectionRover(x, y, maxX, maxY);
-            case "S":
+            case Directions.SOUTH:
                 return RoverFactory.getSDirectionRover(x, y, maxX, maxY);
-            case "W":
+            case Directions.WEST:
                 return RoverFactory.getWDirectionRover(x, y, maxX, maxY);
-            case "N":
+            case Directions.NORTH:
                 return RoverFactory.getNDirectionRover(x, y, maxX, maxY);
             default:
                 throw new MarsMissionExcepton("unknown direction");
