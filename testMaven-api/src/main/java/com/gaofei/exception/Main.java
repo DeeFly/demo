@@ -12,6 +12,7 @@ public class Main {
             System.out.println("toString:" + e.toString());
             System.out.println("getMessage:" + e.getMessage());
             System.out.println("e:" + e);
+            e.printStackTrace();
         }
     }
 }

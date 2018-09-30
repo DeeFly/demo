@@ -20,6 +20,7 @@ public class App {
         Child child = new Child();
         child.setTest2("for child");
         child.setTest1("for parent");
+        System.out.println("1" == "1");
         System.out.println(child.getTest1());
     }
 }

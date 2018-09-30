@@ -50,6 +50,57 @@ public class ThreadPoolTest {
     int cpuCount = Runtime.getRuntime().availableProcessors();
 
     public static void main(String[] args) {
+        ExecutorService fixedThreadPoo2 = Executors.newFixedThreadPool(1, new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return new Thread() {
+                    @Override
+                    public void run() {
+                        int i = 5;
+                        for (int i1 = 0; i1 < i; i1++) {
+                            System.out.println(i1);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        int y = 1/0;
+                    }
+                };
+            }
+        });
+
+        try {
+            fixedThreadPoo2.execute(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("========================================");
+
+        try {
+            fixedThreadPoo2.execute(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

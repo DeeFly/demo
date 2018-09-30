@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by GaoQingming on 2018/1/23 0023.
  */
-public class Main {
+public class LinkedHashMapMain {
     public static void main(String[] args) {
         //下面这种写法，遍历输出的顺序只和插入顺序有关系，即使中间有get或者覆盖操作，都不会影响遍历输出的顺序
         LinkedHashMap<String,String> map1 = new LinkedHashMap();

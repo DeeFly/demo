@@ -12,6 +12,9 @@ public class Main {
         LinkedHashMap<String,String> linkedHashMap = new LinkedHashMap<String, String>();
         linkedHashMap.put("","");
         linkedHashMap.get("");
+        if ("s" instanceof String) {
+            System.out.println("    ssssssssssssssssssssss");
+        }
         try {
             linkedBlockingQueue.put(new Object());
         } catch (InterruptedException e) {
