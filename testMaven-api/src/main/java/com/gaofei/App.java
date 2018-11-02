@@ -1,6 +1,8 @@
 package com.gaofei;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Hello world!
@@ -17,10 +19,16 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Child child = new Child();
-        child.setTest2("for child");
-        child.setTest1("for parent");
-        System.out.println("1" == "1");
-        System.out.println(child.getTest1());
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 102; i++) {
+            list.add(i);
+        }
+
+        int size = list.size();
+        for (int startIndex = 0; startIndex != size; ) {
+            int endIndex = startIndex + 50 > size ? size : startIndex + 50;
+            System.out.println(list.subList(startIndex, endIndex));
+            startIndex = endIndex;
+        }
     }
 }
