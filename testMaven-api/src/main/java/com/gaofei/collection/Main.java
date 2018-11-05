@@ -1,8 +1,6 @@
 package com.gaofei.collection;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 踩过这个坑，AbstractList的add方法如果没有被重写的话，默认抛出java.lang.UnsupportedOperationException
@@ -12,6 +10,11 @@ public class Main {
     public static void main(String[] args) {
         //List list = Collections.emptyList();
         //list.add(new Object());
+        Set<String> set = new HashSet<>();
+        set.add("1");
+        Set<String> unmodifiableSet = Collections.unmodifiableSet(set);
+        unmodifiableSet.add("2");
+        System.out.println(unmodifiableSet.size());
 
         List<User> list1 = new ArrayList<>();
         list1.add(new User("gaofei"));
