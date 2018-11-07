@@ -1,14 +1,12 @@
 package com.gaofei;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Hello world!
  */
 public class App {
-
+    private static final String[] fbsArr = { "\\", "$", "(", ")", "*", "+", ".", "[", "]", "?", "^", "{", "}", "|" };
     public <T> void getAnnotations(Class<T> tClass) {
         Method[] methods = tClass.getDeclaredMethods();
         for (Method method : methods) {
@@ -18,17 +16,19 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 102; i++) {
-            list.add(i);
+    public static String patternKeyFilter(String s) {
+        for (String key : fbsArr) {
+            if (s.contains(key)) {
+                s = s.replace(key, "");
+            }
         }
+        return s;
+    }
 
-        int size = list.size();
-        for (int startIndex = 0; startIndex != size; ) {
-            int endIndex = startIndex + 50 > size ? size : startIndex + 50;
-            System.out.println(list.subList(startIndex, endIndex));
-            startIndex = endIndex;
-        }
+    public static void main(String[] args) {
+        String s = "g((((((((";
+        String s2 = s.replace("(", "");
+        System.out.println(s2.length());
+        System.out.println(s2);
     }
 }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * T 和 ? 的区别 ：
+ * T 在乎具体的类型， ? 不在乎具体的类型
+ * 因此在往集合中添加元素的时候，（此时要用 <? super Parent> 可以插入任意Parent的子类
+ * 而<T extends Parent> 这种写法是错误的，没有这种写法，（可能是担心插入Parent的各种子类，而T 希望的是单一特定的类型）
+ * 总的来说 ? 比 T 更宽泛一些
  * Created by GaoQingming on 2018/10/18 0018.
  */
 public class ExtendSuperTest {
@@ -23,6 +28,14 @@ public class ExtendSuperTest {
         //superChild.add(new Parent());
         superChild.add(new Child());
         superChild.add(new ChildChild());
+    }
+
+    public void foo(List<? super Child> list) {
+        list.add(new ChildChild());
+    }
+
+    public void foo2(List<? extends Child> list) {
+        Parent parent = list.get(0);
     }
 
     public void testInvokeParent(List<Parent> list) {
@@ -68,7 +81,7 @@ public class ExtendSuperTest {
         }
 
         @Override
-        public int compareTo(Object o) {
+        public int compareTo(Parent o) {
             return 0;
         }
     }
