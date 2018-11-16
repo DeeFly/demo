@@ -3,15 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.gaofei</groupId>
-  <artifactId>testMaven</artifactId>
+  <artifactId>demo</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>testMaven-api</module>
-    <module>testMaven-web</module>
+    <module>info-demo</module>
   </modules>
   <packaging>pom</packaging>
 
-  <name>testMaven</name>
+  <name>demo</name>
   <url>http://maven.apache.org</url>
 
   <properties>
