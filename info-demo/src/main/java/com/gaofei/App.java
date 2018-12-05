@@ -1,34 +1,36 @@
 package com.gaofei;
 
-import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Hello world!
  */
 public class App {
-    private static final String[] fbsArr = { "\\", "$", "(", ")", "*", "+", ".", "[", "]", "?", "^", "{", "}", "|" };
-    public <T> void getAnnotations(Class<T> tClass) {
-        Method[] methods = tClass.getDeclaredMethods();
-        for (Method method : methods) {
-            System.out.println(method.getName());
-            Test2 test2 = method.getAnnotation(Test2.class);
-            System.out.println(test2.description());
-        }
-    }
-
-    public static String patternKeyFilter(String s) {
-        for (String key : fbsArr) {
-            if (s.contains(key)) {
-                s = s.replace(key, "");
-            }
-        }
-        return s;
-    }
 
     public static void main(String[] args) {
-        String s = "g((((((((";
-        String s2 = s.replace("(", "");
-        System.out.println(s2.length());
-        System.out.println(s2);
+
     }
+
+
+    public static String test(List<String> strings) {
+        switch (4) {
+            case 2:
+                System.out.println();
+                break;
+                default:
+        }
+
+        gaofei:
+        for (int i = 0; i < 10; i++) {
+            for (int i1 = 0; i1 < 10; i1++) {
+                for (int i2 = 0; i2 < 10; i2++) {
+                    if (i2 == 1)
+                    break gaofei;
+                }
+            }
+        }
+        return "";
+    }
+
+
 }

@@ -11,6 +11,7 @@ public class Main {
         child2.a();
         Parent child3 = new Parent();
         child3.a();
+        System.out.println(child.wangwei());
         /**
          * 输出如下：
          * 这个地方厉害了，一定要看看，模板方法新理解！！
