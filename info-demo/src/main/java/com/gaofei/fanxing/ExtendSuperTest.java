@@ -38,8 +38,9 @@ public class ExtendSuperTest {
         Parent parent = list.get(0);
     }
 
-    public void testInvokeParent(List<Parent> list) {
-
+    public void testInvokeParent(List<Parent> parentList, List<Child> childList, List<ChildChild> childChildList) {
+        test2(childList,parentList);
+        test2(childChildList, childList);
     }
     public void testInvoke() {
         List<Child> children = new ArrayList<>();
