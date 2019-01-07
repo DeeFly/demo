@@ -1,2 +1,2 @@
 # testMaven
-one project that i learn every single knowledge
+one project that I learn every single knowledge
