@@ -22,7 +22,7 @@ public class DefaultProcessor implements Processor {
         String request = new String(message.getMessage(), message.getMessageStart(), message.getPosition() - message.getMessageStart());
         System.out.println("request:" + request);
 
-        String response = "we received your message..." + request;
+        String response = "we received your message:" + request;
         byte[] responseBytes = response.getBytes(Charset.forName("UTF-8"));
         message.setMessage(responseBytes);
         messageWriter.write(selectionKey);
