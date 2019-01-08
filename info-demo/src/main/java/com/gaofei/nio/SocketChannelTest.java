@@ -19,9 +19,24 @@ public class SocketChannelTest {
             socketChannel.connect(new InetSocketAddress("127.0.0.1", 9999));
             ByteBuffer byteBuffer = ByteBuffer.allocate(48);
             byteBuffer.clear();
-            String toOutPut = "ce shi String";
-            byteBuffer.put(toOutPut.getBytes());
+            String step1 = "GET / HTTP/1.1\r\n" +
+                    "Content-Length: 5\r\n";
+            byteBuffer.put(step1.getBytes());
 
+            byteBuffer.flip();
+            while (byteBuffer.hasRemaining()) {
+                socketChannel.write(byteBuffer);
+            }
+
+            //模拟网络消息请求延迟10秒
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String step2 = "\r\n12345";
+            byteBuffer.clear();
+            byteBuffer.put(step2.getBytes());
             byteBuffer.flip();
             while (byteBuffer.hasRemaining()) {
                 socketChannel.write(byteBuffer);
