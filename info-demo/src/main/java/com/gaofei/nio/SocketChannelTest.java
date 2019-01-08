@@ -29,14 +29,20 @@ public class SocketChannelTest {
 
             byteBuffer.clear();
             int length = socketChannel.read(byteBuffer);
-            while (length != -1) {
-                System.out.println("本次读取的长度为:" + length);
-                while (byteBuffer.hasRemaining()) {
-                    System.out.println("本次读取的内容为:" + (char)byteBuffer.get());
-                }
-                byteBuffer.clear();
-                length = socketChannel.read(byteBuffer);
-            }
+            byteBuffer.flip();
+            byte[] response = new byte[length];
+            byteBuffer.get(response, 0, length);
+            String responseString = new String(response);
+            System.out.println("本次读取的长度为:" + length);
+            System.out.println("本次读取的内容为:" + responseString);
+            //while (length != -1) {
+            //    System.out.println("本次读取的长度为:" + length);
+            //    while (byteBuffer.hasRemaining()) {
+            //        System.out.println("本次读取的内容为:" + (char)byteBuffer.get());
+            //    }
+            //    byteBuffer.clear();
+            //    length = socketChannel.read(byteBuffer);
+            //}
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

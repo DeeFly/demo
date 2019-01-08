@@ -47,25 +47,23 @@ public class DefaultMessageReader implements MessageReader {
     }
 
     private void doReadMessage(SelectionKey selectionKey) {
-        Message message = (Message)selectionKey.attachment();
+        Message message = (Message) selectionKey.attachment();
         if (message == null) {
             message = new Message();
         }
-        SocketChannel socketChannel = (SocketChannel)selectionKey.channel();
+        SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.clear();
         try {
             int reads;
-            do {
-                reads = socketChannel.read(byteBuffer);
-                byteBuffer.flip();
-                int limit = byteBuffer.limit();
-                byteBuffer.get(message.getMessage(), 0, limit);
-                message.setPosition(limit);
-                selectionKey.attach(message);
-                //TODO 这里假设一次就读取完成所有的消息，直接交付给processor处理
-                processor.process(selectionKey);
-            } while (reads != -1);
+            reads = socketChannel.read(byteBuffer);
+            byteBuffer.flip();
+            int limit = byteBuffer.limit();
+            byteBuffer.get(message.getMessage(), 0, limit);
+            message.setPosition(limit);
+            selectionKey.attach(message);
+            //TODO 这里假设一次就读取完成所有的消息，直接交付给processor处理
+            processor.process(selectionKey);
         } catch (IOException e) {
             e.printStackTrace();
         }

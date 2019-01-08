@@ -32,11 +32,6 @@ public class DefaultMessageWriter implements MessageWriter {
         } catch (ClosedChannelException e) {
             e.printStackTrace();
         } finally {
-            try {
-                selectionKey.channel().close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             selectionKey.cancel();
         }
 
