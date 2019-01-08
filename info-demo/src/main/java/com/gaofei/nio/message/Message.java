@@ -9,6 +9,8 @@ public class Message {
     //下一个可写的位置
     private int position = 0;
 
+    private int messageStart = 0;
+
     public byte[] getMessage() {
         return message;
     }
@@ -23,5 +25,13 @@ public class Message {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public int getMessageStart() {
+        return messageStart;
+    }
+
+    public void setMessageStart(int messageStart) {
+        this.messageStart = messageStart;
     }
 }

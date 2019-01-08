@@ -19,9 +19,10 @@ public class DefaultProcessor implements Processor {
     @Override
     public void process(SelectionKey selectionKey) {
         Message message = (Message)selectionKey.attachment();
-        System.out.println(new String(message.getMessage(), 0, message.getPosition()));
+        String request = new String(message.getMessage(), message.getMessageStart(), message.getPosition() - message.getMessageStart());
+        System.out.println("request:" + request);
 
-        String response = "we received your message...";
+        String response = "we received your message..." + request;
         byte[] responseBytes = response.getBytes(Charset.forName("UTF-8"));
         message.setMessage(responseBytes);
         messageWriter.write(selectionKey);

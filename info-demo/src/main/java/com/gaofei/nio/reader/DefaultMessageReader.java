@@ -65,7 +65,11 @@ public class DefaultMessageReader implements MessageReader {
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.clear();
         try {
-            socketChannel.read(byteBuffer);
+            int bytesRead = socketChannel.read(byteBuffer);
+
+            while(bytesRead > 0){
+                bytesRead = socketChannel.read(byteBuffer);
+            }
             byteBuffer.flip();
             int limit = byteBuffer.limit();
             byteBuffer.get(message.getMessage(), message.getPosition(), limit);
@@ -75,6 +79,7 @@ public class DefaultMessageReader implements MessageReader {
             HttpHeaders httpHeaders = new HttpHeaders();
             int received = HttpUtil.parseHttpRequest(message.getMessage(), 0, message.getMessage().length, httpHeaders);
             if (received != -1) {
+                message.setMessageStart(httpHeaders.bodyStartIndex);
                 processor.process(selectionKey);
             }
         } catch (IOException e) {
