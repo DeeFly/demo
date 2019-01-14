@@ -5,6 +5,7 @@ package com.gaofei.Enum_meiju;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println(EnumTest.StringEnum.ONE);
         EnumTest.ONE.reset();
     }
 }

@@ -30,4 +30,9 @@ public enum  EnumTest {
     EnumTest (String name) {
         this.name = name;
     }
+
+    enum StringEnum {
+        ONE,
+        TWO;
+    }
 }
