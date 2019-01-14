@@ -1,5 +1,6 @@
 package com.gaofei.nio.processor;
 
+import com.gaofei.nio.classLoader.MyClassLoader;
 import com.gaofei.nio.message.Message;
 import com.gaofei.nio.servlet.Servlet;
 import com.gaofei.nio.writer.MessageWriter;
@@ -30,11 +31,9 @@ public class DefaultProcessor implements Processor {
     }
 
     private Servlet findMappingServlet(String request){
-        ClassLoader classLoader = this.getClass().getClassLoader();
-        String webappsPath = classLoader.getResource("").getPath();
-        System.out.println(webappsPath);
+        ClassLoader classLoader = new MyClassLoader();
         Servlet mappingServlet = null;
-        String path = "E:\\document\\workSpace\\webapps\\MyServlet.class";
+        String path = "E:\\temp\\MyServlet.class";
         try {
             mappingServlet = (Servlet)(classLoader.loadClass(path).newInstance());
         } catch (InstantiationException e) {
