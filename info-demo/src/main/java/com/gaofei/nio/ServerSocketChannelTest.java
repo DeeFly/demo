@@ -52,40 +52,4 @@ public class ServerSocketChannelTest {
             e.printStackTrace();
         }
     }
-
-    private void handleSocketChannel(SocketChannel socketChannel) {
-        try {
-            socketChannel.register(readSelector, SelectionKey.OP_READ);
-        } catch (ClosedChannelException e) {
-            e.printStackTrace();
-        }
-        //ByteBuffer byteBuffer = ByteBuffer.allocate(48);
-        //try {
-        //    int length = socketChannel.read(byteBuffer);
-        //    while (length != -1) {
-        //        System.out.println("本次读取的长度为：" + length);
-        //        byteBuffer.flip();
-        //        while (byteBuffer.hasRemaining()) {
-        //            System.out.println("本次读取的内容为:" + (char)byteBuffer.get());
-        //        }
-        //        byteBuffer.clear();
-        //        length = socketChannel.read(byteBuffer);
-        //    }
-        //    byteBuffer.clear();
-        //    byteBuffer.put("server response".getBytes());
-        //    byteBuffer.flip();
-        //    while (byteBuffer.hasRemaining()) {
-        //        socketChannel.write(byteBuffer);
-        //    }
-        //    socketChannel.close();
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //} finally {
-        //    try {
-        //        socketChannel.close();
-        //    } catch (IOException e) {
-        //        e.printStackTrace();
-        //    }
-        //}
-    }
 }
