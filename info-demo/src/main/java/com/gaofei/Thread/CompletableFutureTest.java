@@ -39,6 +39,8 @@ public class CompletableFutureTest {
         result.forEach(System.out::println);
     }
 
+
+
     static class Shop{
         private String name;
         public Shop(String name) {
