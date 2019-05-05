@@ -11,6 +11,5 @@ public class SplitTest {
         String s = "111,2221,333 444 555";
         String[] ss = s.split(",| ");
         Arrays.stream(ss).forEach(System.out::println);
-        //reset test
     }
 }
