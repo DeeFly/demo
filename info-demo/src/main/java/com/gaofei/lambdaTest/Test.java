@@ -8,7 +8,14 @@ import java.util.stream.Collectors;
  */
 public class Test {
     public static void main(String[] args) {
-        String[] strings = {"3df", "dsfsdg", "sdf"};
-        System.out.println(Arrays.stream(strings).collect(Collectors.joining(", ")));
+        int i = 1;
+        i = print(i);
+        System.out.println(i);
     }
+
+    private static int print(int i) {
+        System.out.println(i++);
+        return i;
+    }
+
 }

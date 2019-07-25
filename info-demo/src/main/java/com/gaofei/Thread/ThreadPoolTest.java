@@ -11,11 +11,13 @@ public class ThreadPoolTest {
     //下面这个new ThreadPoolExecutor 没有做过实验，也不太确定用途
     private BlockingQueue queue = new LinkedBlockingQueue(10);
     private ThreadFactory factory = new ThreadFactory() {
+        @Override
         public Thread newThread(Runnable r) {
             return null;
         }
     };
     private RejectedExecutionHandler handler = new RejectedExecutionHandler() {
+        @Override
         public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
 
         }
@@ -40,6 +42,7 @@ public class ThreadPoolTest {
 
     public void cachedThreadPoolTest() {
         cachedThreadPool.execute(new Runnable() {
+            @Override
             public void run() {
                 //do nothing
             }
@@ -50,73 +53,28 @@ public class ThreadPoolTest {
     int cpuCount = Runtime.getRuntime().availableProcessors();
 
     public static void main(String[] args) {
-        ExecutorService fixedThreadPoo2 = Executors.newFixedThreadPool(1, new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return new Thread() {
-                    @Override
-                    public void run() {
-                        int i = 5;
-                        for (int i1 = 0; i1 < i; i1++) {
-                            System.out.println(i1);
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        int y = 1/0;
-                    }
-                };
+        ExecutorService cachedThreadPool2 = Executors.newCachedThreadPool();
+        Future<String> future = cachedThreadPool2.submit(() -> {
+            try {
+                Thread.sleep(1000);
+                throw new RuntimeException("test");
+            } catch (InterruptedException e) {
+                System.out.println("interrupt");
             }
+            return "result";
         });
-
         try {
-            fixedThreadPoo2.execute(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+            Thread.sleep(10000);
+            throw new RuntimeException("test");
+        } catch (InterruptedException e) {
+            System.out.println("interrupt");
         }
-
         try {
-            Thread.sleep(1000);
+            System.out.println(future.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
-        System.out.println("========================================");
-
-        try {
-            fixedThreadPoo2.execute(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });
-        } catch (Exception e) {
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
     }
 }
-
-
-/*//这种方式可以为单个线程设置异常处理器
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                throw new RuntimeException("test");
-            }
-        };
-        thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            public void uncaughtException(Thread t, Throwable e) {
-                System.out.println(e.getMessage());
-                System.out.println(e.getCause());
-            }
-        });
-        thread.start();*/

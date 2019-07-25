@@ -20,16 +20,16 @@ public class CompletableFutureTest {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
         List<Shop> shops = new ArrayList<>(10);
-        shops.add(new Shop("1"));
-        shops.add(new Shop("2"));
-        shops.add(new Shop("3"));
-        shops.add(new Shop("4"));
-        shops.add(new Shop("5"));
-        shops.add(new Shop("6"));
-        shops.add(new Shop("7"));
-        shops.add(new Shop("8"));
-        shops.add(new Shop("9"));
-        shops.add(new Shop("10"));
+        shops.add(new Shop(1));
+        shops.add(new Shop(2));
+        shops.add(new Shop(3));
+        shops.add(new Shop(4));
+        shops.add(new Shop(5));
+        shops.add(new Shop(6));
+        shops.add(new Shop(7));
+        shops.add(new Shop(8));
+        shops.add(new Shop(9));
+        shops.add(new Shop(10));
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         List<CompletableFuture> completableFutures = shops.stream().map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(), executorService)).collect(Collectors.toList());
@@ -42,14 +42,14 @@ public class CompletableFutureTest {
 
 
     static class Shop{
-        private String name;
-        public Shop(String name) {
+        private Integer name;
+        public Shop(Integer name) {
             this.name = name;
         }
 
         public String getPrice() {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1100 - name * 100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
