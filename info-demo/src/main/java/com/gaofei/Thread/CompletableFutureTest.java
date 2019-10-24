@@ -33,10 +33,10 @@ public class CompletableFutureTest {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         List<CompletableFuture> completableFutures = shops.stream().map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(), executorService)).collect(Collectors.toList());
-        List<String> result = completableFutures.stream().map(CompletableFuture<String>::join).collect(Collectors.toList());
+        //List<String> result = completableFutures.stream().map(CompletableFuture<String>::join).collect(Collectors.toList());
         stopWatch.stop();
         System.out.println(stopWatch.getTotalTimeSeconds());
-        result.forEach(System.out::println);
+        //result.forEach(System.out::println);
     }
 
 
@@ -53,6 +53,7 @@ public class CompletableFutureTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(name);
             return new Random().nextInt() + "  " + this.name;
         }
     }

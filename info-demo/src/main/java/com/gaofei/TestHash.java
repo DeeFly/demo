@@ -1,6 +1,10 @@
 package com.gaofei;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.stream.Collectors;
 
 /**
  * 同一个类new出来两个对象，属性值相同，hash值也不相同（如果不重写hashCode的方法的话)
@@ -26,20 +30,10 @@ public class TestHash {
     }
 
     public static void main(String[] args) {
-        InnerClass innerClass = new InnerClass();
-        InnerClass innerClass1 = new InnerClass();
-        HashSet<InnerClass> hashSet = new HashSet<InnerClass>();
-        hashSet.add(innerClass);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        hashSet.add(innerClass);
-        System.out.println(hashSet.size());
-        //System.out.println("inner hashcode:" + innerClass.hashCode());
-        //System.out.println("inner 1 hashCode:" + innerClass1.hashCode());
-        //System.out.println("Object hashCode:" + ((Object)innerClass).hashCode());
-        //System.out.println("Object 1 hashCode:" + ((Object)innerClass1).hashCode());
+        List<String> strings = Arrays.asList("111", "111", "222");
+        List<String> result = strings.stream().filter(string -> "111".equals(string)).collect(Collectors.toList());
+        System.out.println(result.size());
+        System.out.println(strings.size());
+
     }
 }
