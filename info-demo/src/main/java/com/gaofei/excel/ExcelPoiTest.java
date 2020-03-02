@@ -15,6 +15,11 @@ import java.util.List;
  */
 public class ExcelPoiTest {
 
+    /**
+     * 这个是创建隐藏sheet，专门存储下拉列表值
+     * @param typeArrays
+     * @return
+     */
     // 传入下拉列表数组值，构造信息模板
     public static Workbook generateExcel(String[]typeArrays) {
         Workbook wb = new XSSFWorkbook();
@@ -34,8 +39,8 @@ public class ExcelPoiTest {
         Cell typeCell = row.createCell((int)1);
         typeCell.setCellValue("类型");
 
-        // 设置下拉列表值绑定对哪一页起作用
-        sheet.addValidationData(SetDataValidation(wb, "typelist!$A$1:$A$" + typeArrays.length, 1, 1, typeArrays.length, 1));
+        // 设置下拉列表值绑定对哪一页起作用,endRow传的太大会打开失败
+        sheet.addValidationData(SetDataValidation(wb, "typelist!$A$1:$A$" + typeArrays.length, 1, 1, 10000, 1));
 
         // 隐藏作为下拉列表值的Sheet
         //wb.setSheetHidden(wb.getSheetIndex("typelist"), 1);
@@ -83,18 +88,51 @@ public class ExcelPoiTest {
         return validation;
     }
 
+
+    /**
+     * 简单设置下拉框的值，不用隐藏sheet的方式，支持少量256字符？
+     * @return
+     */
+    public static Workbook generateExcelSimple() {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        String fileName = "test";
+        XSSFSheet sheet = workbook.createSheet(fileName);
+        Row excelHeader = sheet.createRow(0);
+        Cell cell = excelHeader.createCell(0);
+        cell.setCellValue("ID");
+        Cell cell1 = excelHeader.createCell(1);
+        cell1.setCellValue("是否");
+        // 加载下拉列表内容
+        String[] textlist = new String[2];
+        textlist[0] = "是";
+        textlist[1] = "否";
+        XSSFDataValidationHelper dvHelper = new XSSFDataValidationHelper(sheet);
+        XSSFDataValidationConstraint dvConstraint = (XSSFDataValidationConstraint) dvHelper.createExplicitListConstraint(textlist);
+        CellRangeAddressList addressList = null;
+        XSSFDataValidation validation = null;
+
+        addressList = new CellRangeAddressList(1, 10000, 1, 1);
+        validation = (XSSFDataValidation) dvHelper.createValidation(dvConstraint, addressList);
+        sheet.addValidationData(validation);
+        sheet.autoSizeColumn(1);
+        return workbook;
+    }
+
     public static void main(String[]args)throws Exception {
         List < String > typelist = new ArrayList < String > ();
         for (int i = 0; i < 200; i++) {
             typelist.add("T" + (0 + i));
         }
         String[]typeArrays = typelist.toArray(new String[typelist.size()]);
-        Workbook wb = generateExcel(typeArrays);
+        //复杂的
+        //Workbook wb = generateExcel(typeArrays);
+        Workbook wb = generateExcelSimple();
         File tempFile = new File("/Users/gaoqingming/test.xlsx");
         OutputStream os = new FileOutputStream(tempFile);
 
         wb.write(os);
         os.close();
     }
+
 
 }

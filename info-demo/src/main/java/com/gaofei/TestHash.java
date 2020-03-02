@@ -30,10 +30,7 @@ public class TestHash {
     }
 
     public static void main(String[] args) {
-        List<String> strings = Arrays.asList("111", "111", "222");
-        List<String> result = strings.stream().filter(string -> "111".equals(string)).collect(Collectors.toList());
-        System.out.println(result.size());
-        System.out.println(strings.size());
-
+        String empty = null;
+        System.out.println(new String(empty));
     }
 }

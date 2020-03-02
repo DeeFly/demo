@@ -1,12 +1,16 @@
 package com.gaofei.pattern;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by GaoQingming on 2019/3/14 0014.
  */
 public class Main {
     public static void main(String[] args) {
-        String s = "figure           skating";
-        String s2 = "figure skating";
-        System.out.println(s2.equals(s.replaceAll(" {2,}", " ")));
+        System.out.println(String.format("trustLoginId_%s", "name"));
     }
+
+
 }
