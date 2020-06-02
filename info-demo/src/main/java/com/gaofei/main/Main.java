@@ -1,6 +1,7 @@
 package com.gaofei.main;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -24,8 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Main {
     private static final Pattern YUAN_PATTERN = Pattern.compile("[0-9]+(\\.[0-9]{1,2})?");
     public static void main(String[] args) {
-        System.out.println(new Double(0.000).equals(new Double(0)));
-        System.out.println(isYuanFormat("0.12"));
+        System.out.println(trimDouble(196.399999, 2));
     }
 
     static class Persion {
@@ -50,5 +50,21 @@ public class Main {
         }
         Matcher isNum = YUAN_PATTERN.matcher(str);
         return isNum.matches();
+    }
+
+    public static Double trimDouble(Object data, int scale) {
+        if (data == null) {
+            return null;
+        }
+        if (data instanceof Double) {
+            return new BigDecimal((Double)data).setScale(scale, RoundingMode.HALF_UP).doubleValue();
+        } else if (data instanceof BigDecimal) {
+            return ((BigDecimal)data).setScale(scale, RoundingMode.HALF_UP).doubleValue();
+        } else if (data instanceof Long) {
+            return new Double((Long)data);
+        } else if (data instanceof String) {
+            return new BigDecimal((String)data).setScale(scale, RoundingMode.HALF_UP).doubleValue();
+        }
+        throw new NumberFormatException("未知的数据类型:" + data.getClass().getName());
     }
 }
