@@ -10,16 +10,16 @@ import com.google.common.util.concurrent.RateLimiter;
  * @date 2020/07/08
  */
 public class RateLimiterTest {
-    static RateLimiter rateLimiter = RateLimiter.create(7);
+    static RateLimiter rateLimiter = RateLimiter.create(10);
 
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //如果获得令牌指令，则执行业务逻辑
-                    if (rateLimiter.tryAcquire(1000, TimeUnit.MILLISECONDS)) {
+                    if (rateLimiter.tryAcquire(6, TimeUnit.SECONDS)) {
                         System.out.println("执行业务逻辑");
                     } else {
                         System.out.println("限流");
