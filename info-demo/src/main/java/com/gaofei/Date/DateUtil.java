@@ -478,12 +478,10 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        Date start = new Date();
-
-        Date parseDate = truncate2DayAndAdd(start, 1);
-        System.out.println(format(parseDate, DATE_PATTERN_YYYY_MM_DD_CHINESE));
-        Date parsedDate2 = truncate2DayAndAdd(parseDate, -1);
-        System.out.println(format(parsedDate2));
+        Date date = new Date(1592582400000L);
+        System.out.println(format(date));
+        Date end = new Date(1586361600000L);
+        System.out.println(format(end));
     }
 
     public static Date truncate2DayAndAdd(Date date, int dayAdd) {

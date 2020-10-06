@@ -275,6 +275,7 @@ public class BigExcelReader {
         }
     }
 
+
     /**
      * 判断是否科学计数法
      * @return
@@ -340,7 +341,7 @@ public class BigExcelReader {
             return value;
         }
     }
-    private int nameToColumn(String name) {
+    private static int nameToColumn(String name) {
         int column = -1;
         for (int i = 0; i < name.length(); ++i) {
             int c = name.charAt(i);
@@ -350,7 +351,7 @@ public class BigExcelReader {
     }
 
     public static void main(String[] args) throws Exception {
-
+        //System.out.println(nameToColumn("AA"));
         DefaultRowReader rowReader = new DefaultRowReader();
 
         String folderStr = "/users/gaoqingming/learn";
